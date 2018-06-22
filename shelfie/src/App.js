@@ -10,9 +10,22 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      inventory: []
+      inventory: [],
+      newItem: true
     }
     this.getProducts = this.getProducts.bind(this);
+  }
+
+  showEditButton = () => {
+    this.setState({
+        newItem: false
+    })
+  }
+
+  showNewItemButton = () => {
+    this.setState({
+        newItem: true
+    })
   }
 
   componentDidMount(){
@@ -36,9 +49,9 @@ class App extends Component {
     console.log(this.state.inventory)
     return (
       <div>
-        <Form getProducts={this.getProducts} />
+        <Form getProducts={this.getProducts} newItem={this.state.newItem} showNewItemButton={this.showNewItemButton}/>
         <Header />
-        <Dashboard getProducts={this.getProducts} inventory={this.state.inventory} />
+        <Dashboard getProducts={this.getProducts} inventory={this.state.inventory} showEditButton={this.showEditButton} />
       </div>
     );
   }

@@ -56,6 +56,12 @@ class Form extends Component {
         console.log(this.state.productPrice)
         console.log(this.state.productName)
         console.log(this.state.imageURL)
+        let updateButton;
+        if(this.props.newItem){
+            updateButton = <button onClick={this.createItem}>Add to Inventory</button>
+        } else {
+            updateButton = <button onClick={this.props.showNewItemButton} >Save Changes</button>
+        }
         return (
             <div>
                 Form
@@ -78,7 +84,7 @@ class Form extends Component {
                     onChange={(e) => this.updateImage(e)}
                     placeholder="Image URL"/>
                 <button onClick={this.cancel}>Cancel</button>
-                <button onClick={this.createItem}>Add to Inventory</button>
+                {updateButton}
             </div>
         )
     }
