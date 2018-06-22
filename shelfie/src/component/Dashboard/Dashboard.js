@@ -3,6 +3,10 @@ import Product from '../Product/Product';
 
 
 class Dashboard extends Component {
+    deleteItem = () => {
+        
+    }
+
     render(){
         console.log(this.props.inventory)
 

@@ -18,9 +18,9 @@ const port = process.env.PORT;
 
 app.post( '/api/product', controller.create );
 app.get( '/api/inventory', controller.get_inventory );
-// app.get( '/api/product/:id', products_controller.getOne );
+app.delete( '/api/product/:id', controller.delete );
 // app.put( '/api/product/:id', products_controller.update );
-// app.delete( '/api/product/:id', products_controller.delete );
+
 
 
 app.listen( port, () => { console.log(`Server listening on port ${port}.`); } );

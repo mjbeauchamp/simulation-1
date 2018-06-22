@@ -12,17 +12,30 @@ module.exports = {
 
     create: (req, res) => {
         const dbInstance = req.app.get('db');
-        const { product_name, product_price, image_url } = req.body;
+        const { name, price, image } = req.body;
 
-        dbInstance.create_product([product_name, product_price, image_url])
+        dbInstance.create_product([name, price, image])
         .then( () => {
-            res.status(200).send([product_name, product_price, image_url])
+            res.status(200).send([name, price, image])
         })
         .catch( err => {
           res.status(500).send({errorMessage: "Oops! Something went wrong. Our engineers have been informed!"});
           console.log(err)
         } );
+    },
+    delete: (req, res) => {
+        const dbInstance = req.app.get('db');
+        const delId = parseInt(req.params.id);
+        console.log(delId)
+        dbInstance.delete_product(delId)
+            .then( () => res.sendStatus(200))
+            .catch(err => {
+                console.log(err);
+                res.status(500).send({errorMessage: 'Oops! Something went wrong.'});
+            });
     }
+
+
     // read: (req, res) => {
     //     res.send({categories: categories, idNum: idNum});
     // },
@@ -53,20 +66,6 @@ module.exports = {
     //         }
     //     });
     //     res.send({categories: categories, idNum: idNum});
-    // }, 
-    // delete: (req, res) => {
-    //     let delId = parseInt(req.params.id);
-    //     console.log(delId)
-    //     let indexNum;
-    //     if(delId>6){
-    //         categories.forEach((val, i) => {
-    //             if(val.idNum===delId){
-    //                 indexNum = i;
-    //             }
-    //         })
-    //         idNum--;
-    //         categories.splice(indexNum, 1);
-    //     }
-    //     res.send({categories: categories, idNum: delId});
     // }
+    // 
  }
