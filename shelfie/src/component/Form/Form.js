@@ -7,11 +7,22 @@ class Form extends Component {
         this.state = {
             productName: '',
             productPrice: 0,
-            imageURL: ''
+            imageURL: '',
+            selectedProduct: null,
+            newItem: true
         }
         this.cancel = this.cancel.bind(this);
         this.createItem = this.createItem.bind(this);
     }
+
+    componentDidUpdate(oldProps){
+        if(oldProps.chosenProduct !== this.props.chosenProduct){
+          this.setState({
+              selectedProduct: this.props.chosenProduct,
+              newItem: false
+          })
+        }
+      }
 
     updateName(e){
         this.setState({
@@ -57,7 +68,7 @@ class Form extends Component {
         console.log(this.state.productName)
         console.log(this.state.imageURL)
         let updateButton;
-        if(this.props.newItem){
+        if(this.state.newItem){
             updateButton = <button onClick={this.createItem}>Add to Inventory</button>
         } else {
             updateButton = <button onClick={this.props.showNewItemButton} >Save Changes</button>

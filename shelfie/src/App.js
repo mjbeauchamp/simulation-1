@@ -11,7 +11,8 @@ class App extends Component {
     super();
     this.state = {
       inventory: [],
-      newItem: true
+      newItem: true,
+      chosenProduct: null
     }
     this.getProducts = this.getProducts.bind(this);
   }
@@ -49,7 +50,7 @@ class App extends Component {
     console.log(this.state.inventory)
     return (
       <div>
-        <Form getProducts={this.getProducts} newItem={this.state.newItem} showNewItemButton={this.showNewItemButton}/>
+        <Form showEditButton={this.showEditButton} chosenProduct={this.state.chosenProduct} getProducts={this.getProducts} newItem={this.state.newItem} showNewItemButton={this.showNewItemButton}/>
         <Header />
         <Dashboard getProducts={this.getProducts} inventory={this.state.inventory} showEditButton={this.showEditButton} />
       </div>
