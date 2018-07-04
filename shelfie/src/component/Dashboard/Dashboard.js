@@ -16,6 +16,17 @@ class Dashboard extends Component {
         this.props.getProducts()
     }
 
+    editItem = (idNum) => {
+        axios.put('/api/product/' + idNum)
+            .then(response => {
+                console.log("Delete action successful!")
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        this.props.getProducts()
+    }
+
     render(){
         console.log(this.props.inventory)
 

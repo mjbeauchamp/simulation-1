@@ -19,7 +19,7 @@ const port = process.env.PORT;
 app.post( '/api/product', controller.create );
 app.get( '/api/inventory', controller.get_inventory );
 app.delete( '/api/product/:id', controller.delete );
-// app.put( '/api/product/:id', products_controller.update );
+app.put( '/api/product/:id', controller.update );
 
 
 

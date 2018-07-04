@@ -33,6 +33,16 @@ module.exports = {
                 console.log(err);
                 res.status(500).send({errorMessage: 'Oops! Something went wrong.'});
             });
+    },
+    update: (req, res) => {
+        const dbInstance = req.app.get('db');
+        const delId = parseInt(req.params.id);
+        dbInstance.update_product(delId)
+            .then( () => res.sendStatus(200))
+            .catch(err => {
+                console.log(err);
+                res.status(500).send({errorMessage: 'Oops! Something went wrong.'});
+            })
     }
 
 
